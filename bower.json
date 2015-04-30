@@ -11,9 +11,14 @@
   ],
   "dependencies": {
     "purescript-prelude": "git://github.com/purescript/purescript-prelude#master",
-    "purescript-functions": "^0.1.0"
+    "purescript-functions": "git://github.com/purescript/purescript-functions#master"
+  },
+  "devDependencies": {
+    "purescript-console": "git://github.com/purescript/purescript-console#master",
+    "purescript-eff": "git://github.com/purescript/purescript-eff#master"
   },
   "resolutions": {
-    "purescript-prelude": "master"
+    "purescript-prelude": "master",
+    "purescript-eff": "master"
   }
 }
