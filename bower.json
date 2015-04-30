@@ -12,5 +12,8 @@
   "dependencies": {
     "purescript-prelude": "git://github.com/purescript/purescript-prelude#master",
     "purescript-functions": "^0.1.0"
+  },
+  "resolutions": {
+    "purescript-prelude": "master"
   }
 }

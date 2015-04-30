@@ -45,7 +45,3 @@ instance showDown :: (Show a) => Show (Down a)
 ``` purescript
 instance ordDown :: (Ord a) => Ord (Down a)
 ```
-
-
-
-
