@@ -1,0 +1,16 @@
+{
+  "name": "purescript-posets",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-prelude": "git://github.com/purescript/purescript-prelude#master",
+    "purescript-functions": "^0.1.0"
+  }
+}
