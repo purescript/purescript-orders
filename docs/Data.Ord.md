@@ -52,3 +52,73 @@ instance showDown :: (Show a) => Show (Down a)
 ``` purescript
 instance ordDown :: (Ord a) => Ord (Down a)
 ```
+
+
+#### `min`
+
+``` purescript
+min :: forall a. (Ord a) => a -> a -> a
+```
+
+Take the minimum of two values. If they compare to `EQ`, the first
+argument is chosen.
+
+#### `max`
+
+``` purescript
+max :: forall a. (Ord a) => a -> a -> a
+```
+
+Take the maximum of two values. If they compare to `EQ`, the first
+argument is chosen.
+
+#### `MinMax`
+
+``` purescript
+newtype MinMax a
+  = MinMax a
+```
+
+This newtype allows you to make a `Lattice` from any type which has an
+`Ord` instance, using `sup` = `max`, and `inf` = `min`.
+
+#### `eqMinMax`
+
+``` purescript
+instance eqMinMax :: (Eq a) => Eq (MinMax a)
+```
+
+
+#### `showMinMax`
+
+``` purescript
+instance showMinMax :: (Show a) => Show (MinMax a)
+```
+
+
+#### `ordMinMax`
+
+``` purescript
+instance ordMinMax :: (Ord a) => Ord (MinMax a)
+```
+
+
+#### `latticeMinMax`
+
+``` purescript
+instance latticeMinMax :: (Ord a) => Lattice (MinMax a)
+```
+
+
+#### `Min`
+
+``` purescript
+type Min a = Inf (MinMax a)
+```
+
+
+#### `Max`
+
+``` purescript
+type Max a = Sup (MinMax a)
+```

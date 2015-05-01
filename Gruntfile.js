@@ -40,6 +40,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-execute");
 
   grunt.registerTask("test",    ["psc:tests", "execute:tests"]);
-  grunt.registerTask("make",    ["pscMake", "dotPsci", "pscDocs"]);
+  grunt.registerTask("make",    ["dotPsci", "pscDocs", "pscMake"]);
   grunt.registerTask("default", ["make"]);
 };

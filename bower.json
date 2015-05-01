@@ -19,6 +19,7 @@
   },
   "resolutions": {
     "purescript-prelude": "master",
-    "purescript-eff": "master"
+    "purescript-eff": "master",
+    "purescript-control": "master"
   }
 }
