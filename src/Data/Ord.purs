@@ -11,10 +11,13 @@ invert GT = LT
 invert EQ = EQ
 invert LT = GT
 
+comparing :: forall a b. (Ord b) => (a -> b) -> (a -> a -> Ordering)
+comparing f = compare `on` f
+
 -- | A newtype wrapper which provides a reversed `Ord` instance. This allows
 -- | you to do things like:
 -- |
--- |     > sortBy (compare `on` Down) [1,2,3]
+-- |     > sortBy (comparing Down) [1,2,3]
 -- |     [3,2,1]
 newtype Down a = Down a
 

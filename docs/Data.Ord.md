@@ -13,6 +13,13 @@ invert :: Ordering -> Ordering
 ```
 
 
+#### `comparing`
+
+``` purescript
+comparing :: forall a b. (Ord b) => (a -> b) -> a -> a -> Ordering
+```
+
+
 #### `Down`
 
 ``` purescript
@@ -23,7 +30,7 @@ newtype Down a
 A newtype wrapper which provides a reversed `Ord` instance. This allows
 you to do things like:
 
-    > sortBy (compare `on` Down) [1,2,3]
+    > sortBy (comparing Down) [1,2,3]
     [3,2,1]
 
 #### `eqDown`

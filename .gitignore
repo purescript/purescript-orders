@@ -2,3 +2,4 @@ bower_components/
 .psci
 output/
 node_modules/
+tmp/

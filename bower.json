@@ -10,12 +10,12 @@
     "output"
   ],
   "dependencies": {
-    "purescript-prelude": "git://github.com/purescript/purescript-prelude#master",
-    "purescript-functions": "git://github.com/purescript/purescript-functions#master"
+    "purescript-prelude": "master",
+    "purescript-functions": "master"
   },
   "devDependencies": {
-    "purescript-console": "git://github.com/purescript/purescript-console#master",
-    "purescript-eff": "git://github.com/purescript/purescript-eff#master"
+    "purescript-console": "master",
+    "purescript-eff": "master"
   },
   "resolutions": {
     "purescript-prelude": "master",

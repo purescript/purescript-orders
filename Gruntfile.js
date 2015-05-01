@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     "src/**/*.purs",
     "bower_components/purescript-*/src/**/*.purs",
   ]
-  var testsFiles = ["tests/**/*.purs"].concat(libFiles)
+  var testsFiles = ["test/**/*.purs"].concat(libFiles)
 
   grunt.initConfig({
     pscMake: {
@@ -14,8 +14,7 @@ module.exports = function(grunt) {
     psc: {
       tests: {
         options: {
-          module: "Tests",
-          main: "Tests"
+          main: "Test.Main"
         },
         src: testsFiles,
         dest: "tmp/tests.js"
