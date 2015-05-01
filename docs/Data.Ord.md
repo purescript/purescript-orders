@@ -117,8 +117,36 @@ type Min a = Inf (MinMax a)
 ```
 
 
+#### `mkMin`
+
+``` purescript
+mkMin :: forall a. a -> Min a
+```
+
+
+#### `runMin`
+
+``` purescript
+runMin :: forall a. Min a -> a
+```
+
+
 #### `Max`
 
 ``` purescript
 type Max a = Sup (MinMax a)
+```
+
+
+#### `mkMax`
+
+``` purescript
+mkMax :: forall a. a -> Max a
+```
+
+
+#### `runMax`
+
+``` purescript
+runMax :: forall a. Max a -> a
 ```
