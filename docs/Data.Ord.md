@@ -108,4 +108,3 @@ runMax :: forall a. Max a -> a
 ```
 
 
-
