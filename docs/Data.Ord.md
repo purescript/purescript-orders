@@ -80,7 +80,7 @@ newtype MinMax a
 ```
 
 This newtype allows you to make a `Lattice` from any type which has an
-`Ord` instance, using `sup` = `max`, and `inf` = `min`.
+`Ord` instance, using `max` as `sup`, and `min` as `inf`.
 
 #### `eqMinMax`
 
