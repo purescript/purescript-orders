@@ -76,6 +76,12 @@ instance latticeMinMax :: (Ord a) => Lattice (MinMax a) where
 
 instance boundedLatticeMinMax :: (Bounded a, Ord a) => BoundedLattice (MinMax a)
 
+-- | Provides a `Semigroup` and `Monoid` based on the `min` function, via
+-- | `Data.Monoid.Inf`. For example:
+-- |
+-- |     runMin (mkMin 20 <> mkMin 10) == 10
+-- |     mempty :: Min Ordering == Inf (MinMax GT)
+-- |
 type Min a = Inf (MinMax a)
 
 mkMin :: forall a. a -> Min a
@@ -84,6 +90,12 @@ mkMin = Inf <<< MinMax
 runMin :: forall a. Min a -> a
 runMin (Inf (MinMax a)) = a
 
+-- | Provides a `Semigroup` and `Monoid` based on the `max` function, via
+-- | `Data.Monoid.Sup`. For example:
+-- |
+-- |     runMax (mkMax 20 <> mkMax 10) == 20
+-- |     mempty :: Max Ordering == Sup (MinMax LT)
+-- |
 type Max a = Sup (MinMax a)
 
 mkMax :: forall a. a -> Max a
