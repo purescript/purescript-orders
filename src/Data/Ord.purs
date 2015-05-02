@@ -54,6 +54,9 @@ max x y =
 -- | `Ord` instance, using `max` as `sup`, and `min` as `inf`.
 newtype MinMax a = MinMax a
 
+runMinMax :: forall a. MinMax a -> a
+runMinMax (MinMax x) = x
+
 instance eqMinMax :: (Eq a) => Eq (MinMax a) where
   eq (MinMax x) (MinMax y) = x == y
 

@@ -82,6 +82,13 @@ newtype MinMax a
 This newtype allows you to make a `Lattice` from any type which has an
 `Ord` instance, using `max` as `sup`, and `min` as `inf`.
 
+#### `runMinMax`
+
+``` purescript
+runMinMax :: forall a. MinMax a -> a
+```
+
+
 #### `eqMinMax`
 
 ``` purescript
