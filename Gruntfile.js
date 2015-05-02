@@ -23,12 +23,12 @@ module.exports = function(grunt) {
     dotPsci: {
       src: libFiles
     },
-    // pscDocs: {
-    //   dataOrd: {
-    //     src: "src/Data/Ord.purs",
-    //     dest: "docs/Data.Ord.md"
-    //   }
-    // },
+    pscDocs: {
+      dataOrd: {
+        src: "src/Data/Ord.purs",
+        dest: "docs/Data.Ord.md"
+      }
+    },
     execute: {
       tests: {
         src: "tmp/tests.js"
@@ -40,6 +40,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-execute");
 
   grunt.registerTask("test",    ["psc:tests", "execute:tests"]);
-  grunt.registerTask("make",    ["dotPsci", "pscMake"]);
+  grunt.registerTask("make",    ["dotPsci", "pscDocs", "pscMake"]);
   grunt.registerTask("default", ["make"]);
 };

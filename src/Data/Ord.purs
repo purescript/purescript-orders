@@ -51,7 +51,7 @@ max x y =
     GT -> x
 
 -- | This newtype allows you to make a `Lattice` from any type which has an
--- | `Ord` instance, using `sup` = `max`, and `inf` = `min`.
+-- | `Ord` instance, using `max` as `sup`, and `min` as `inf`.
 newtype MinMax a = MinMax a
 
 instance eqMinMax :: (Eq a) => Eq (MinMax a) where
