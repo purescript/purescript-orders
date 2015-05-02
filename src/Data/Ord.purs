@@ -63,9 +63,15 @@ instance showMinMax :: (Show a) => Show (MinMax a) where
 instance ordMinMax :: (Ord a) => Ord (MinMax a) where
   compare (MinMax x) (MinMax y) = compare x y
 
+instance boundedMinMax :: (Bounded a) => Bounded (MinMax a) where
+  top = MinMax top
+  bottom = MinMax bottom
+
 instance latticeMinMax :: (Ord a) => Lattice (MinMax a) where
   sup = max
   inf = min
+
+instance boundedLatticeMinMax :: (Bounded a, Ord a) => BoundedLattice (MinMax a)
 
 type Min a = Inf (MinMax a)
 
