@@ -1,5 +1,3 @@
-# Module Documentation
-
 ## Module Data.Ord
 
 A module defining some useful types and instances surrounding the `Ord`
