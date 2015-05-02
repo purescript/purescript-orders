@@ -2,7 +2,6 @@
 
 ## Module Data.Ord
 
-
 A module defining some useful types and instances surrounding the `Ord`
 type class.
 
@@ -12,13 +11,11 @@ type class.
 invert :: Ordering -> Ordering
 ```
 
-
 #### `comparing`
 
 ``` purescript
 comparing :: forall a b. (Ord b) => (a -> b) -> a -> a -> Ordering
 ```
-
 
 #### `Down`
 
@@ -27,32 +24,18 @@ newtype Down a
   = Down a
 ```
 
+##### Instances
+``` purescript
+instance eqDown :: (Eq a) => Eq (Down a)
+instance showDown :: (Show a) => Show (Down a)
+instance ordDown :: (Ord a) => Ord (Down a)
+```
+
 A newtype wrapper which provides a reversed `Ord` instance. This allows
 you to do things like:
 
     > sortBy (comparing Down) [1,2,3]
     [3,2,1]
-
-#### `eqDown`
-
-``` purescript
-instance eqDown :: (Eq a) => Eq (Down a)
-```
-
-
-#### `showDown`
-
-``` purescript
-instance showDown :: (Show a) => Show (Down a)
-```
-
-
-#### `ordDown`
-
-``` purescript
-instance ordDown :: (Ord a) => Ord (Down a)
-```
-
 
 #### `min`
 
@@ -79,36 +62,16 @@ newtype MinMax a
   = MinMax a
 ```
 
-This newtype allows you to make a `Lattice` from any type which has an
-`Ord` instance, using `sup` = `max`, and `inf` = `min`.
-
-#### `eqMinMax`
-
+##### Instances
 ``` purescript
 instance eqMinMax :: (Eq a) => Eq (MinMax a)
-```
-
-
-#### `showMinMax`
-
-``` purescript
 instance showMinMax :: (Show a) => Show (MinMax a)
-```
-
-
-#### `ordMinMax`
-
-``` purescript
 instance ordMinMax :: (Ord a) => Ord (MinMax a)
-```
-
-
-#### `latticeMinMax`
-
-``` purescript
 instance latticeMinMax :: (Ord a) => Lattice (MinMax a)
 ```
 
+This newtype allows you to make a `Lattice` from any type which has an
+`Ord` instance, using `sup` = `max`, and `inf` = `min`.
 
 #### `Min`
 
@@ -116,13 +79,11 @@ instance latticeMinMax :: (Ord a) => Lattice (MinMax a)
 type Min a = Inf (MinMax a)
 ```
 
-
 #### `mkMin`
 
 ``` purescript
 mkMin :: forall a. a -> Min a
 ```
-
 
 #### `runMin`
 
@@ -130,13 +91,11 @@ mkMin :: forall a. a -> Min a
 runMin :: forall a. Min a -> a
 ```
 
-
 #### `Max`
 
 ``` purescript
 type Max a = Sup (MinMax a)
 ```
-
 
 #### `mkMax`
 
@@ -144,9 +103,11 @@ type Max a = Sup (MinMax a)
 mkMax :: forall a. a -> Max a
 ```
 
-
 #### `runMax`
 
 ``` purescript
 runMax :: forall a. Max a -> a
 ```
+
+
+
