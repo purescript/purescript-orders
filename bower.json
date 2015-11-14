@@ -9,6 +9,10 @@
     "bower_components",
     "output"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hdgarrood/purescript-orders"
+  },
   "dependencies": {
     "purescript-monoid": "~0.3.2",
     "purescript-prelude": "~0.1.3",
