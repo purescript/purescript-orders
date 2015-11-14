@@ -4,9 +4,9 @@
 
 module Data.Ord where
 
+import Prelude
 import Data.Function
-import Data.Monoid.Inf
-import Data.Monoid.Sup
+import Data.Monoid
 
 invert :: Ordering -> Ordering
 invert GT = LT
@@ -21,6 +21,7 @@ comparing f = compare `on` f
 -- |
 -- |     > sortBy (comparing Down) [1,2,3]
 -- |     [3,2,1]
+-- |
 newtype Down a = Down a
 
 instance eqDown :: (Eq a) => Eq (Down a) where
@@ -50,56 +51,56 @@ max x y =
     EQ -> x
     GT -> x
 
--- | This newtype allows you to make a `Lattice` from any type which has an
--- | `Ord` instance, using `max` as `sup`, and `min` as `inf`.
-newtype MinMax a = MinMax a
-
-runMinMax :: forall a. MinMax a -> a
-runMinMax (MinMax x) = x
-
-instance eqMinMax :: (Eq a) => Eq (MinMax a) where
-  eq (MinMax x) (MinMax y) = x == y
-
-instance showMinMax :: (Show a) => Show (MinMax a) where
-  show (MinMax a) = "(MinMax " <> show a <> ")"
-
-instance ordMinMax :: (Ord a) => Ord (MinMax a) where
-  compare (MinMax x) (MinMax y) = compare x y
-
-instance boundedMinMax :: (Bounded a) => Bounded (MinMax a) where
-  top = MinMax top
-  bottom = MinMax bottom
-
-instance latticeMinMax :: (Ord a) => Lattice (MinMax a) where
-  sup = max
-  inf = min
-
-instance boundedLatticeMinMax :: (Bounded a, Ord a) => BoundedLattice (MinMax a)
-
--- | Provides a `Semigroup` and `Monoid` based on the `min` function, via
--- | `Data.Monoid.Inf`. For example:
+-- | Provides a `Semigroup` based on the `min` function. If the type
+-- | has a `Bounded` instance, then a `Monoid` instance can be provided
+-- | too. For example:
 -- |
--- |     runMin (mkMin 20 <> mkMin 10) == 10
--- |     mempty :: Min Ordering == Inf (MinMax GT)
+-- |     runMin (Min 5 <> Min 6) = 5
+-- |     mempty :: Min Ordering = Min GT
 -- |
-type Min a = Inf (MinMax a)
-
-mkMin :: forall a. a -> Min a
-mkMin = Inf <<< MinMax
+newtype Min a = Min a
 
 runMin :: forall a. Min a -> a
-runMin (Inf (MinMax a)) = a
+runMin (Min a) = a
 
--- | Provides a `Semigroup` and `Monoid` based on the `max` function, via
--- | `Data.Monoid.Sup`. For example:
--- |
--- |     runMax (mkMax 20 <> mkMax 10) == 20
--- |     mempty :: Max Ordering == Sup (MinMax LT)
--- |
-type Max a = Sup (MinMax a)
+instance eqMin :: (Eq a) => Eq (Min a) where
+  eq = eq `on` runMin
 
-mkMax :: forall a. a -> Max a
-mkMax = Sup <<< MinMax
+instance showMin :: (Show a) => Show (Min a) where
+  show (Min a) = "(Min " <> show a <> ")"
+
+instance ordMin :: (Ord a) => Ord (Min a) where
+  compare = compare `on` runMin
+
+instance semigroupMin :: (Ord a) => Semigroup (Min a) where
+  append (Min x) (Min y) = Min (min x y)
+
+instance monoidMin :: (Ord a, Bounded a) => Monoid (Min a) where
+  mempty = Min top
+
+-- | Provides a `Semigroup` based on the `max` function. If the type
+-- | has a `Bounded` instance, then a `Monoid` instance can be provided
+-- | too. For example:
+-- |
+-- |     runMax (Max 5 <> Max 6) = 6
+-- |     mempty :: Max Ordering = Max LT
+-- |
+newtype Max a = Max a
 
 runMax :: forall a. Max a -> a
-runMax (Sup (MinMax a)) = a
+runMax (Max a) = a
+
+instance eqMax :: (Eq a) => Eq (Max a) where
+  eq = eq `on` runMax
+
+instance showMax :: (Show a) => Show (Max a) where
+  show (Max a) = "(Max " <> show a <> ")"
+
+instance ordMax :: (Ord a) => Ord (Max a) where
+  compare = compare `on` runMax
+
+instance semigroupMax :: (Ord a) => Semigroup (Max a) where
+  append (Max x) (Max y) = Max (max x y)
+
+instance monoidMax :: (Ord a, Bounded a) => Monoid (Max a) where
+  mempty = Max bottom

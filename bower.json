@@ -10,16 +10,11 @@
     "output"
   ],
   "dependencies": {
-    "purescript-prelude": "master",
-    "purescript-functions": "master"
+    "purescript-monoid": "~0.3.2",
+    "purescript-prelude": "~0.1.3",
+    "purescript-functions": "~0.1.0"
   },
   "devDependencies": {
-    "purescript-console": "master",
-    "purescript-eff": "master"
-  },
-  "resolutions": {
-    "purescript-prelude": "master",
-    "purescript-eff": "master",
-    "purescript-control": "master"
+    "purescript-console": "~0.1.1"
   }
 }
