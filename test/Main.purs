@@ -1,54 +1,65 @@
 
 module Test.Main where
 
-import Console (log, print)
+import Prelude
+import Data.Tuple
+import Data.Tuple.Nested
+import Data.Monoid
+import Data.Foldable (for_)
 import Control.Monad.Eff
+import Control.Monad.Eff.Console (log, CONSOLE())
+import Control.Monad.Eff.Exception
+import qualified Data.Array as A
+
+type EffT a =
+  forall e. Eff (err :: EXCEPTION, console :: CONSOLE | e) a
 
 import Data.Ord
 
--- | Sort the elements of an array in increasing order, where elements are compared using
--- | the specified partial ordering, creating a new array.
-sortBy :: forall a. (a -> a -> Ordering) -> Array a -> Array a
-sortBy comp xs = sortJS comp' xs
-  where
-  comp' x y = case comp x y of
-    GT -> 1
-    EQ -> 0
-    LT -> -1
-
-sort :: forall a. (Ord a) => Array a -> Array a
-sort = sortBy compare
-
-foreign import sortJS
-  """
-  function sortJS (f) {
-    return function (l) {
-      return l.slice().sort(function (x, y) {
-        return f(x)(y);
-      });
-    };
-  }
-  """ :: forall a. (a -> a -> Int) -> Array a -> Array a
-
-assertEq :: forall a e. (Eq a, Show a) => a -> a -> Eff e Unit
+assertEq :: forall a. (Show a, Eq a) => a -> a -> EffT Unit
 assertEq x y
   | x == y    = return unit
-  | otherwise = throwError (show x <> " /= " <> show y)
+  | otherwise = throwException $ error $ show x <> " /= " <> show y
 
-foreign import throwError
-  """
-  function throwError(msg) {
-    throw new Error(msg)
-  }
-  """ :: forall e. String -> Eff e Unit
-
-foreign import reverse
-  """
-  function reverse(xs) {
-    return xs.slice().reverse()
-  }
-  """ :: forall a. Array a -> Array a
-
+main :: EffT Unit
 main = do
+  log "Down provides an inverted Ord instance"
   let arr = [1,2,2,6,3,4,6]
-  assertEq (sortBy (comparing Down) arr) (reverse (sort arr))
+  assertEq (A.sortBy (comparing Down) arr) (A.reverse (A.sort arr))
+
+  log "Min is a well-behaved Semigroup"
+  associativityOf Min
+
+  log "Min is a well-behaved Monoid"
+  identityOf Min
+
+  log "Max is a well-behaved Semigroup"
+  associativityOf Max
+
+  log "Min is a well-behaved Monoid"
+  identityOf Max
+
+associativityOf :: forall a.
+  (Semigroup a, Eq a, Show a) => (Ordering -> a) -> EffT Unit
+associativityOf f =
+  for_ orderings3 (uncurry3 \x y z ->
+      let x' = f x
+          y' = f y
+          z' = f z
+      in assertEq ((x' <> y') <> z') (x' <> (y' <> z')))
+
+identityOf :: forall a.
+  (Monoid a, Eq a, Show a) => (Ordering -> a) -> EffT Unit
+identityOf f =
+  for_ orderings (\x ->
+    let x' = f x
+    in assertEq (x' <> mempty) x')
+
+orderings :: Array Ordering
+orderings = [LT, EQ, GT]
+
+orderings2 :: Array (Tuple Ordering Ordering)
+orderings2 = Tuple <$> orderings <*> orderings
+
+orderings3 :: Array (Tuple3 Ordering Ordering Ordering)
+orderings3 = Tuple <$> orderings2 <*> orderings
