@@ -39,6 +39,18 @@ main = do
   log "Min is a well-behaved Monoid"
   identityOf Max
 
+  log "clamp"
+  let f = clamp 0 10
+  assertEq (f (-5)) 0
+  assertEq (f 5)    5
+  assertEq (f 15)   10
+
+  log "between"
+  let f = between 0 10
+  assertEq (f (-5)) false
+  assertEq (f 5)    true
+  assertEq (f 15)   false
+
 associativityOf :: forall a.
   (Semigroup a, Eq a, Show a) => (Ordering -> a) -> EffT Unit
 associativityOf f =

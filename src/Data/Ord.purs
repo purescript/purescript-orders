@@ -33,6 +33,26 @@ instance showDown :: (Show a) => Show (Down a) where
 instance ordDown :: (Ord a) => Ord (Down a) where
   compare (Down x) (Down y) = invert (compare x y)
 
+-- | Clamp a value between a minimum and a maximum. For example:
+-- |
+-- |     let f = clamp 0 10
+-- |     f (-5) == 0
+-- |     f 5    == 5
+-- |     f 15   == 10
+-- |
+clamp :: forall a. (Ord a) => a -> a -> a -> a
+clamp low hi x = min hi (max low x)
+
+-- | Test whether a value is between a minimum and a maximum. For example:
+-- |
+-- |     let f = between 0 10
+-- |     f (-5) == false
+-- |     f 5    == true
+-- |     f 15   == false
+-- |
+between :: forall a. (Ord a) => a -> a -> a -> Boolean
+between low hi x = low <= x && x <= hi
+
 -- | Take the minimum of two values. If they compare to `EQ`, the first
 -- | argument is chosen.
 min :: forall a. (Ord a) => a -> a -> a
