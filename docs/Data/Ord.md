@@ -36,6 +36,34 @@ instance showDown :: (Show a) => Show (Down a)
 instance ordDown :: (Ord a) => Ord (Down a)
 ```
 
+#### `clamp`
+
+``` purescript
+clamp :: forall a. (Ord a) => a -> a -> a -> a
+```
+
+Clamp a value between a minimum and a maximum. For example:
+
+    let f = clamp 0 10
+    f (-5) == 0
+    f 5    == 5
+    f 15   == 10
+
+
+#### `between`
+
+``` purescript
+between :: forall a. (Ord a) => a -> a -> a -> Boolean
+```
+
+Test whether a value is between a minimum and a maximum. For example:
+
+    let f = between 0 10
+    f (-5) == false
+    f 5    == true
+    f 15   == false
+
+
 #### `min`
 
 ``` purescript
