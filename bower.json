@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/hdgarrood/purescript-orders"
+    "url": "git://github.com/purescript/purescript-orders"
   },
   "dependencies": {
     "purescript-monoid": "~0.3.2",
