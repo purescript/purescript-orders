@@ -1,8 +1,11 @@
 {
   "private": true,
-  "dependencies": {
-    "grunt": "~0.4.4",
-    "grunt-purescript": "~0.6.0",
-    "grunt-execute": "~0.2.2"
+  "scripts": {
+    "postinstall": "pulp dep install",
+    "build": "pulp build && rimraf docs && pulp docs"
+  },
+  "devDependencies": {
+    "pulp": "^4.0.2",
+    "rimraf": "^2.4.1"
   }
 }
