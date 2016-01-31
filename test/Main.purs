@@ -2,23 +2,25 @@
 module Test.Main where
 
 import Prelude
-import Data.Tuple
-import Data.Tuple.Nested
-import Data.Monoid
+
+import Control.Monad.Eff (Eff)
+import Control.Monad.Eff.Console (log, CONSOLE)
+import Control.Monad.Eff.Exception (throwException, error, EXCEPTION)
+
+import Data.Array as A
 import Data.Foldable (for_)
-import Control.Monad.Eff
-import Control.Monad.Eff.Console (log, CONSOLE())
-import Control.Monad.Eff.Exception
-import qualified Data.Array as A
+import Data.Monoid (class Monoid, mempty)
+import Data.Ord.Down (Down(..))
+import Data.Ord.Min (Min(..))
+import Data.Ord.Max (Max(..))
+import Data.Tuple (Tuple(..))
+import Data.Tuple.Nested (Tuple3, uncurry3)
 
-type EffT a =
-  forall e. Eff (err :: EXCEPTION, console :: CONSOLE | e) a
-
-import Data.Ord
+type EffT a = forall eff. Eff (err :: EXCEPTION, console :: CONSOLE | eff) a
 
 assertEq :: forall a. (Show a, Eq a) => a -> a -> EffT Unit
 assertEq x y
-  | x == y    = return unit
+  | x == y = pure unit
   | otherwise = throwException $ error $ show x <> " /= " <> show y
 
 main :: EffT Unit
@@ -40,19 +42,22 @@ main = do
   identityOf Max
 
   log "clamp"
-  let f = clamp 0 10
-  assertEq (f (-5)) 0
-  assertEq (f 5)    5
-  assertEq (f 15)   10
+  let f1 = clamp 0 10
+  assertEq (f1 (-5)) 0
+  assertEq (f1 5)    5
+  assertEq (f1 15)   10
 
   log "between"
-  let f = between 0 10
-  assertEq (f (-5)) false
-  assertEq (f 5)    true
-  assertEq (f 15)   false
+  let f2 = between 0 10
+  assertEq (f2 (-5)) false
+  assertEq (f2 5)    true
+  assertEq (f2 15)   false
 
-associativityOf :: forall a.
-  (Semigroup a, Eq a, Show a) => (Ordering -> a) -> EffT Unit
+associativityOf
+  :: forall a
+   . (Semigroup a, Eq a, Show a)
+  => (Ordering -> a)
+  -> EffT Unit
 associativityOf f =
   for_ orderings3 (uncurry3 \x y z ->
       let x' = f x
@@ -60,8 +65,11 @@ associativityOf f =
           z' = f z
       in assertEq ((x' <> y') <> z') (x' <> (y' <> z')))
 
-identityOf :: forall a.
-  (Monoid a, Eq a, Show a) => (Ordering -> a) -> EffT Unit
+identityOf
+  :: forall a
+   . (Monoid a, Eq a, Show a)
+  => (Ordering -> a)
+  -> EffT Unit
 identityOf f =
   for_ orderings (\x ->
     let x' = f x
