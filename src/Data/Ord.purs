@@ -4,9 +4,9 @@
 
 module Data.Ord where
 
-import Prelude
-import Data.Function
-import Data.Monoid
+import Prelude (class Bounded, class Ord, class Semigroup, class Show, class Eq, Ordering(GT, EQ, LT), bottom, compare, show, (<>), eq, top, (<=), (&&), (==))
+import Data.Function (on)
+import Data.Monoid (class Monoid)
 
 invert :: Ordering -> Ordering
 invert GT = LT
