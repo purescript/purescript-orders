@@ -1,29 +1,30 @@
 {
   "name": "purescript-orders",
-  "moduleType": [
-    "node"
-  ],
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "output"
-  ],
+  "homepage": "https://github.com/purescript/purescript-orders",
+  "description": "A handful of utility `newtype`s for the `Ord` type class.",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/purescript/purescript-orders"
   },
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "output",
+    "test",
+    "bower.json",
+    "package.json"
+  ],
   "dependencies": {
-    "purescript-monoid": "~0.3.2",
-    "purescript-prelude": "~0.1.3",
-    "purescript-functions": "~0.1.0"
+    "purescript-monoid": "^1.0.0-rc.1",
+    "purescript-prelude": "^1.0.0-rc.1"
   },
   "devDependencies": {
-    "purescript-exceptions": "~0.3.1",
-    "purescript-arrays": "~0.4.3",
-    "purescript-console": "~0.1.1",
-    "purescript-tuples": "~0.4.0",
-    "purescript-foldable-traversable": "~0.4.1"
+    "purescript-arrays": "^1.0.0-rc.1",
+    "purescript-console": "^1.0.0-rc.1",
+    "purescript-exceptions": "^1.0.0-rc.1",
+    "purescript-foldable-traversable": "^1.0.0-rc.1",
+    "purescript-tuples": "^1.0.0-rc.1"
   }
 }
