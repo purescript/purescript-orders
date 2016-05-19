@@ -1,15 +1,14 @@
 module Data.Ord.Max where
 
-import Data.BoundedOrd (class BoundedOrd, bottom)
+import Data.Bounded (class Bounded, bottom)
 import Data.Eq (class Eq, (==))
 import Data.Monoid (class Monoid)
 import Data.Ord (class Ord, compare, max)
 import Data.Semigroup (class Semigroup, (<>))
 import Data.Show (class Show, show)
 
--- | Provides a `Semigroup` based on the `max` function. If the type
--- | has a `BoundedOrd` instance, then a `Monoid` instance can be provided
--- | too. For example:
+-- | Provides a `Semigroup` based on the `max` function. If the type has a
+-- | `Bounded` instance, then a `Monoid` instance is provided too. For example:
 -- |
 -- |     runMax (Max 5 <> Max 6) = 6
 -- |     mempty :: Max Ordering = Max LT
@@ -28,7 +27,7 @@ instance ordMax :: Ord a => Ord (Max a) where
 instance semigroupMax :: Ord a => Semigroup (Max a) where
   append (Max x) (Max y) = Max (max x y)
 
-instance monoidMax :: BoundedOrd a => Monoid (Max a) where
+instance monoidMax :: Bounded a => Monoid (Max a) where
   mempty = Max bottom
 
 instance showMax :: Show a => Show (Max a) where

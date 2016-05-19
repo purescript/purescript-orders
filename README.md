@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/purescript/purescript-orders.svg?branch=master)](https://travis-ci.org/purescript/purescript-orders)
 [![Dependency Status](https://www.versioneye.com/user/projects/56ae473f7e03c700377e01a2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56ae473f7e03c700377e01a2)
 
-A handful of utility `newtype`s for the `Ord` type class.
+Utility `newtype`s for the `Ord` type class.
 
 ## Installation
 
