@@ -14,7 +14,7 @@ import Data.Ord.Down (Down(..))
 import Data.Ord.Min (Min(..))
 import Data.Ord.Max (Max(..))
 import Data.Tuple (Tuple(..))
-import Data.Tuple.Nested (Tuple3, uncurry3)
+import Data.Tuple.Nested (Tuple3, tuple3, uncurry3)
 
 type EffT a = forall eff. Eff (err :: EXCEPTION, console :: CONSOLE | eff) a
 
@@ -82,4 +82,4 @@ orderings2 :: Array (Tuple Ordering Ordering)
 orderings2 = Tuple <$> orderings <*> orderings
 
 orderings3 :: Array (Tuple3 Ordering Ordering Ordering)
-orderings3 = Tuple <$> orderings2 <*> orderings
+orderings3 = tuple3 <$> orderings <*> orderings <*> orderings

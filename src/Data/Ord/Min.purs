@@ -1,25 +1,21 @@
 module Data.Ord.Min where
 
-import Data.Bounded (class Bounded, top)
-import Data.Eq (class Eq, (==))
+import Prelude
+
 import Data.Monoid (class Monoid)
-import Data.Ord (class Ord, compare, min)
-import Data.Semigroup (class Semigroup, (<>))
-import Data.Show (class Show, show)
+import Data.Newtype (class Newtype)
 
 -- | Provides a `Semigroup` based on the `min` function. If the type has a
 -- | `Bounded` instance, then a `Monoid` instance is provided too. For example:
 -- |
--- |     runMin (Min 5 <> Min 6) = 5
+-- |     unwrap (Min 5 <> Min 6) = 5
 -- |     mempty :: Min Ordering = Min GT
 -- |
 newtype Min a = Min a
 
-runMin :: forall a. Min a -> a
-runMin (Min a) = a
+derive instance newtypeMin :: Newtype (Min a) _
 
-instance eqMin :: Eq a => Eq (Min a) where
-  eq (Min x) (Min y) = x == y
+derive newtype instance eqMin :: Eq a => Eq (Min a)
 
 instance ordMin :: Ord a => Ord (Min a) where
   compare (Min x) (Min y) = compare x y
