@@ -17,13 +17,13 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-monoid": "^1.0.0"
+    "purescript-monoid": "^2.0.0"
   },
   "devDependencies": {
-    "purescript-arrays": "^1.0.0",
-    "purescript-console": "^1.0.0",
-    "purescript-exceptions": "^1.0.0",
-    "purescript-foldable-traversable": "^1.0.0",
-    "purescript-tuples": "^1.0.0"
+    "purescript-arrays": "^2.0.0",
+    "purescript-console": "^2.0.0",
+    "purescript-exceptions": "^2.0.0",
+    "purescript-foldable-traversable": "^2.0.0",
+    "purescript-tuples": "^3.0.0"
   }
 }

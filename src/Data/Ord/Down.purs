@@ -1,11 +1,9 @@
 module Data.Ord.Down where
 
-import Data.Bounded (class Bounded, top, bottom)
-import Data.Eq (class Eq, (==))
-import Data.Ord (class Ord, compare)
+import Prelude
+
+import Data.Newtype (class Newtype)
 import Data.Ordering (invert)
-import Data.Semigroup ((<>))
-import Data.Show (class Show, show)
 
 -- | A newtype wrapper which provides a reversed `Ord` instance. For example:
 -- |
@@ -13,8 +11,9 @@ import Data.Show (class Show, show)
 -- |
 newtype Down a = Down a
 
-instance eqDown :: Eq a => Eq (Down a) where
-  eq (Down x) (Down y) = x == y
+derive instance newtypeDown :: Newtype (Down a) _
+
+derive newtype instance eqDown :: Eq a => Eq (Down a)
 
 instance ordDown :: Ord a => Ord (Down a) where
   compare (Down x) (Down y) = invert (compare x y)
