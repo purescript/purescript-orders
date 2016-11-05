@@ -1,8 +1,8 @@
 # purescript-orders
 
-[![Latest release](http://img.shields.io/bower/v/purescript-orders.svg)](https://github.com/purescript/purescript-orders/releases)
-[![Build Status](https://travis-ci.org/purescript/purescript-orders.svg?branch=master)](https://travis-ci.org/purescript/purescript-orders)
-[![Dependency Status](https://www.versioneye.com/user/projects/56ae473f7e03c700377e01a2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56ae473f7e03c700377e01a2)
+[![Latest release](http://img.shields.io/github/release/purescript-orders.svg)](https://github.com/purescript/purescript-orders/releases)
+[![Build status](https://travis-ci.org/purescript/purescript-orders.svg?branch=master)](https://travis-ci.org/purescript/purescript-orders)
+[![Dependency status](https://img.shields.io/librariesio/github/purescript/purescript-orders.svg)](https://libraries.io/github/purescript/purescript-orders)
 
 Utility `newtype`s for the `Ord` type class.
 
