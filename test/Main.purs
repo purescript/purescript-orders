@@ -53,6 +53,10 @@ main = do
   assertEq (f2 5)    true
   assertEq (f2 15)   false
 
+  log "top/bottom"
+  assertEq (fromDown (top :: Down Int)) (bottom :: Int)
+  assertEq (fromDown (bottom :: Down Int)) (top :: Int)
+
 associativityOf
   :: forall a
    . (Semigroup a, Eq a, Show a)
@@ -83,3 +87,6 @@ orderings2 = Tuple <$> orderings <*> orderings
 
 orderings3 :: Array (Tuple3 Ordering Ordering Ordering)
 orderings3 = tuple3 <$> orderings <*> orderings <*> orderings
+
+fromDown :: forall a. Down a -> a
+fromDown (Down a) = a

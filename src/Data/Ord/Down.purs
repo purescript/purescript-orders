@@ -19,8 +19,8 @@ instance ordDown :: Ord a => Ord (Down a) where
   compare (Down x) (Down y) = invert (compare x y)
 
 instance boundedDown :: Bounded a => Bounded (Down a) where
-  top = bottom
-  bottom = top
+  top = Down bottom
+  bottom = Down top
 
 instance showDown :: Show a => Show (Down a) where
   show (Down a) = "(Down " <> show a <> ")"
