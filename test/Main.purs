@@ -16,9 +16,9 @@ import Data.Ord.Max (Max(..))
 import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested (Tuple3, tuple3, uncurry3)
 
-type EffT a = forall eff. Eff (err :: EXCEPTION, console :: CONSOLE | eff) a
+type EffT a = forall eff. Eff (exception :: EXCEPTION, console :: CONSOLE | eff) a
 
-assertEq :: forall a. (Show a, Eq a) => a -> a -> EffT Unit
+assertEq :: forall a. Show a => Eq a => a -> a -> EffT Unit
 assertEq x y
   | x == y = pure unit
   | otherwise = throwException $ error $ show x <> " /= " <> show y
@@ -41,25 +41,15 @@ main = do
   log "Min is a well-behaved Monoid"
   identityOf Max
 
-  log "clamp"
-  let f1 = clamp 0 10
-  assertEq (f1 (-5)) 0
-  assertEq (f1 5)    5
-  assertEq (f1 15)   10
-
-  log "between"
-  let f2 = between 0 10
-  assertEq (f2 (-5)) false
-  assertEq (f2 5)    true
-  assertEq (f2 15)   false
-
   log "top/bottom"
   assertEq (fromDown (top :: Down Int)) (bottom :: Int)
   assertEq (fromDown (bottom :: Down Int)) (top :: Int)
 
 associativityOf
   :: forall a
-   . (Semigroup a, Eq a, Show a)
+   . Semigroup a
+  => Eq a
+  => Show a
   => (Ordering -> a)
   -> EffT Unit
 associativityOf f =
@@ -71,7 +61,9 @@ associativityOf f =
 
 identityOf
   :: forall a
-   . (Monoid a, Eq a, Show a)
+   . Monoid a
+  => Eq a
+  => Show a
   => (Ordering -> a)
   -> EffT Unit
 identityOf f =
