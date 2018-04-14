@@ -9,7 +9,6 @@ import Control.Monad.Eff.Exception (throwException, error, EXCEPTION)
 
 import Data.Array as A
 import Data.Foldable (for_)
-import Data.Monoid (class Monoid, mempty)
 import Data.Ord.Down (Down(..))
 import Data.Ord.Min (Min(..))
 import Data.Ord.Max (Max(..))
