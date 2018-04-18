@@ -21,10 +21,10 @@
     "purescript-newtype": "purescript/purescript-newtype#compiler/0.12"
   },
   "devDependencies": {
-    "purescript-arrays": "^4.0.0",
-    "purescript-console": "^3.0.0",
-    "purescript-exceptions": "^3.0.0",
-    "purescript-foldable-traversable": "^3.0.0",
-    "purescript-tuples": "^4.0.0"
+    "purescript-arrays": "purescript/purescript-arrays#compiler/0.12",
+    "purescript-console": "purescript/purescript-console#compiler/0.12",
+    "purescript-exceptions": "purescript/purescript-exceptions#compiler/0.12",
+    "purescript-foldable-traversable": "purescript/purescript-foldable-traversable#compiler/0.12",
+    "purescript-tuples": "purescript/purescript-tuples#compiler/0.12"
   }
 }
