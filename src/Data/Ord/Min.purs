@@ -2,7 +2,6 @@ module Data.Ord.Min where
 
 import Prelude
 
-import Data.Monoid (class Monoid)
 import Data.Newtype (class Newtype)
 
 -- | Provides a `Semigroup` based on the `min` function. If the type has a
