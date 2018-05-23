@@ -1,8 +1,7 @@
 {
   "name": "purescript-orders",
   "homepage": "https://github.com/purescript/purescript-orders",
-  "description": "A handful of utility `newtype`s for the `Ord` type class.",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
     "url": "git://github.com/purescript/purescript-orders"
@@ -17,14 +16,11 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-prelude": "purescript/purescript-prelude#compiler/0.12",
-    "purescript-newtype": "purescript/purescript-newtype#compiler/0.12"
+    "purescript-prelude": "^4.0.0",
+    "purescript-newtype": "^3.0.0"
   },
   "devDependencies": {
-    "purescript-arrays": "purescript/purescript-arrays#compiler/0.12",
-    "purescript-console": "purescript/purescript-console#compiler/0.12",
-    "purescript-exceptions": "purescript/purescript-exceptions#compiler/0.12",
-    "purescript-foldable-traversable": "purescript/purescript-foldable-traversable#compiler/0.12",
-    "purescript-tuples": "purescript/purescript-tuples#compiler/0.12"
+    "purescript-console": "^4.0.0",
+    "purescript-assert": "^4.0.0"
   }
 }
