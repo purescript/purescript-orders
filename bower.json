@@ -4,7 +4,7 @@
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
-    "url": "git://github.com/purescript/purescript-orders"
+    "url": "https://github.com/purescript/purescript-orders.git"
   },
   "ignore": [
     "**/.*",
@@ -16,11 +16,11 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-prelude": "master",
-    "purescript-newtype": "master"
+    "purescript-newtype": "^4.0.0",
+    "purescript-prelude": "^5.0.0"
   },
   "devDependencies": {
-    "purescript-console": "master",
-    "purescript-assert": "master"
+    "purescript-assert": "^5.0.0",
+    "purescript-console": "^5.0.0"
   }
 }
