@@ -12,7 +12,7 @@ Bugfixes:
 
 Other improvements:
 
-- Migrate from Bower/Pulp to Spago and update CI and formatting tools.
+- Migrate from Bower/Pulp to Spago and update CI and formatting tools. (#17 by @thomashoneyman)
 
 ## [v6.0.0](https://github.com/purescript/purescript-orders/releases/tag/v6.0.0) - 2022-04-27
 
